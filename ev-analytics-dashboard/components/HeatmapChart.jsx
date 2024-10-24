@@ -54,7 +54,7 @@ const HeatmapChart = () => {
 
 
   return (
-    <div>
+    <div  className="bg-white p-4 m-4 rounded-2xl border-[#cccccc] border-1 shadow-md ">
       <Chart options={options} series={series} type="heatmap" height={350} />
     </div>
   );

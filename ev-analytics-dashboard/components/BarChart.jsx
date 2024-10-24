@@ -1,14 +1,34 @@
 "use client";
 
+import { getMakeDistribution } from "@/GlobalFunctions/HelperFunctions";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), {
-    loading: () => <p>Loading...</p>,
+    loading: () => <p className=" text-2xl font-semibold">Loading...</p>,
     ssr: false
   });
 
 const BarChart = () => {
+
+    const [make, setMake] = useState([])
+    const [count, setCount] = useState([])
+
+    useEffect(() => {
+        const makeArr = getMakeDistribution()
+
+        const makeDistributor = makeArr?.reduce((acc, curr) => {
+            acc.push(curr?.make)
+            return acc
+        }, [])
+
+        const countOfDistributor = makeArr?.map(curr => curr?.count)
+        console.log(makeDistributor)
+        setMake([...makeDistributor])
+        setCount([...countOfDistributor])
+    }, [])
+
     const series = [{
-        data: [10, 5, 3, 2, 1], // Example data: number of vehicles per make (e.g., [TESLA, NISSAN, FORD, BMW, KIA])
+        data: [...count ?? []],
       }];
       const options = {
         chart: {
@@ -19,12 +39,12 @@ const BarChart = () => {
           align: 'center',
         },
         xaxis: {
-          categories: ['TESLA', 'NISSAN', 'FORD', 'BMW', 'KIA'], // Example makes
+          categories: [...make ?? []],
         },
       };
 
   return (
-    <div>
+    <div className="bg-white p-4 m-4 rounded-2xl border-[#cccccc] border-1 shadow-md ">
       <Chart options={options} series={series} type="bar" height={350} />
     </div>
   );
