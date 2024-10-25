@@ -1,14 +1,12 @@
 "use client"
 
 import React, { useContext, useMemo } from 'react'
-import { MainContext } from './ContextApi/MainContext'
 import { getProducedInYear } from '@/GlobalFunctions/HelperFunctions'
 import { dataset } from '@/DataSet'
 
 const InfoCard = () => {
 
-    const mainContext = useContext(MainContext)
-
+    // info card data generation
     const data = useMemo(() => {
         const totalEvArr = getProducedInYear()
         const totalEv = totalEvArr[totalEvArr?.length - 1]?.count
@@ -53,7 +51,6 @@ const InfoCard = () => {
 
 
     return (
-
         <div className='flex justify-evenly w-[50%] ml-auto mr-0'>
             {
                 data?.map((item, index) => <div key={index} className='w-[40%] mx-3 my-auto h-[100%] border-1 shadow-md rounded-xl border-[#cccccc] bg-white'>

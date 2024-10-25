@@ -1,5 +1,7 @@
 import { dataset } from "@/DataSet";
 
+
+// Ev by Makers function
 export const getMakeDistribution = () => {
   const makeCount = dataset.reduce((acc, curr) => {
     acc[curr.Make] = (acc[curr.Make] || 0) + 1;
@@ -12,6 +14,7 @@ export const getMakeDistribution = () => {
 };
 
 
+// Ev in a year function
 export const getProducedInYear = () => {
   const prodCount = dataset.reduce((acc, curr) => {
     acc[curr?.["Model Year"]] = (acc[curr?.["Model Year"]] || 0) + 1;
@@ -23,6 +26,7 @@ export const getProducedInYear = () => {
   }));
 };
 
+// Ev by a Maker in years function
 export const getCountByManufacterer = (make) => {
   const makeLowerCase = make?.toLowerCase()
   const makeArr = dataset.reduce((acc, car) => {
@@ -35,6 +39,7 @@ export const getCountByManufacterer = (make) => {
 }
 
 
+// Ev type function
 export const getEVTypeDistribution = () => {
   const evTypeCount = dataset.reduce((acc, curr) => {
     acc[curr?.["Electric Vehicle Type"]] = (acc[curr?.["Electric Vehicle Type"]] || 0) + 1;
@@ -46,6 +51,7 @@ export const getEVTypeDistribution = () => {
   }));
 };
 
+// Ev by Makers in a city in a year function
 export const getMakeCountByCity = (city, year) => {
   const cityLowerCase = city?.toLowerCase()
   const yearInNumber = Number(year)
@@ -62,6 +68,7 @@ export const getMakeCountByCity = (city, year) => {
 
 }
 
+// Electric Utility by county function
 export const getElectricUtilitiesByCounty = (county) => {
   const countyLowerCase = county?.toLowerCase()
   const countyObj = dataset?.reduce((acc, curr) => {

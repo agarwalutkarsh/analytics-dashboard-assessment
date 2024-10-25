@@ -8,6 +8,7 @@ import TreeMap from "@/components/TreeMap";
 
 
 export default function Home() {
+  // Entry Point - Root Page. All the Components are displayed
   return (
     <div className="flex">
       <Sidebar />
@@ -16,10 +17,8 @@ export default function Home() {
           <h1 className="ml-4 text-left font-bold text-5xl my-auto">EV Analytics Dashboard</h1>
             <InfoCard />
         </div>
-        {/* <hr className="w-[70%] mx-auto mb-4 h-1 bg-[#333]" /> */}
           <TreeMap />
         <div className="grid grid-cols-2">
-        {/* <TreeMap /> */}
           <LineChart />
           <PieChart />
           <BarChart />

@@ -3,26 +3,30 @@
 import { getEVTypeDistribution } from '@/GlobalFunctions/HelperFunctions';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+
+// Dynamic importing
+
 const Chart = dynamic(() => import("react-apexcharts"), {
   loading: () => <p className=" text-2xl font-semibold text-center h-44 ">Loading...</p>,
   ssr: false
 })
 
 const PieChart = () => {
-
+  // Chart states
   const [type, setType] = useState([])
   const [value, setValue] = useState([])
   
-
+  // Data manipulation
   useEffect(() => {
     const evType = getEVTypeDistribution()
-    console.log(evType)
+
     const typesArr = evType?.map(item => item?.type)
     const valuesArr = evType?.map(item => item?.count)
     setType([...typesArr])
     setValue([...valuesArr])
   }, [])
 
+  // Data setting
   const series = [...value]; // Example market shares
   const options = {
     chart: {

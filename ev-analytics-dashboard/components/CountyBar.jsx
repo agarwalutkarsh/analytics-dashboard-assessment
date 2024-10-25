@@ -5,6 +5,9 @@ import { getElectricUtilitiesByCounty } from "@/GlobalFunctions/HelperFunctions"
 import dynamic from "next/dynamic";
 import { useContext, useEffect, useState } from "react";
 import { MainContext } from "./ContextApi/MainContext";
+
+// Dynamic Loading for the apex charts
+
 const Chart = dynamic(() => import("react-apexcharts"), {
   loading: () => <p className=" text-2xl font-semibold text-center h-44 ">Loading...</p>,
   ssr: false
@@ -12,9 +15,13 @@ const Chart = dynamic(() => import("react-apexcharts"), {
 
 const CountyBar = () => {
   const mainContext = useContext(MainContext)
+
+  // Bar chart states
   const [elecUtility, setElecUtility] = useState([])
   const [count, setCount] = useState([])
 
+  
+  // Data manipulation
   useEffect(() => {
     const elecUtilityArr = getElectricUtilitiesByCounty(mainContext?.sidebarFilters?.county)
 
@@ -24,11 +31,12 @@ const CountyBar = () => {
     }, [])
 
     const countOfElecUtility = elecUtilityArr?.map(curr => curr?.count)
-    console.log(electricUtilityArr)
+
     setElecUtility([...electricUtilityArr])
     setCount([...countOfElecUtility])
   }, [mainContext?.sidebarFilters?.county])
 
+  // Setting up the chart
   const series = [{
     name: 'No. of EVs',
     data: [...count ?? []],

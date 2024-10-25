@@ -6,6 +6,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { getCountByManufacterer, getProducedInYear } from '@/GlobalFunctions/HelperFunctions';
 import { MainContext } from './ContextApi/MainContext';
+
+// Dynamic import for apex charts
+
 const Chart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
     loading: () => <p className=" text-2xl font-semibold text-center h-44 ">Loading...</p>
@@ -13,11 +16,13 @@ const Chart = dynamic(() => import("react-apexcharts"), {
 
 const LineChart = () => {
     const mainContext = useContext(MainContext)
+    // Line Chart data
     const [prodCountArr, setProdCountArr] = useState([])
     const [prodYrArr, setProdYrArr] = useState([])
 
     const [makeProdCountArr, setMakeProdCountArr] = useState([])
 
+    // Data manipulation
     useEffect(() => {
         const productionArr = getProducedInYear()
 
@@ -41,6 +46,7 @@ const LineChart = () => {
         )
     }, [mainContext?.sidebarFilters?.make])
 
+    // Setting up graph
     const series = [
         {
             name: 'No. of Total EVs',

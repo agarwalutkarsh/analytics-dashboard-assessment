@@ -5,6 +5,9 @@ import { getMakeCountByCity } from "@/GlobalFunctions/HelperFunctions";
 import dynamic from "next/dynamic";
 import { useContext, useEffect, useState } from "react";
 import { MainContext } from "./ContextApi/MainContext";
+
+// Dynamic Loading for the apex charts
+
 const Chart = dynamic(() => import("react-apexcharts"), {
   loading: () => <p className=" text-2xl font-semibold text-center h-44 ">Loading...</p>,
   ssr: false
@@ -12,9 +15,11 @@ const Chart = dynamic(() => import("react-apexcharts"), {
 
 const BarChart = () => {
   const mainContext = useContext(MainContext)
+  // Bar chart states
   const [make, setMake] = useState([])
   const [count, setCount] = useState([])
 
+  // Data manipulation
   useEffect(() => {
     const makeArr = getMakeCountByCity(mainContext?.sidebarFilters?.city, mainContext?.sidebarFilters?.year)
 
@@ -24,11 +29,12 @@ const BarChart = () => {
     }, [])
 
     const countOfDistributor = makeArr?.map(curr => curr?.count)
-    console.log(makeDistributor)
+
     setMake([...makeDistributor])
     setCount([...countOfDistributor])
   }, [mainContext?.sidebarFilters?.city, mainContext?.sidebarFilters?.year])
 
+  // Setting up the chart
   const series = [{
     name: 'No. of EVs',
     data: [...count ?? []],
