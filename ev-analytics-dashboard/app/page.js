@@ -4,6 +4,7 @@ import InfoCard from "@/components/InfoCard";
 import LineChart from "@/components/LineChart";
 import PieChart from "@/components/PieChart";
 import Sidebar from "@/components/Sidebar";
+import TreeMap from "@/components/TreeMap";
 
 
 export default function Home() {
@@ -16,10 +17,12 @@ export default function Home() {
             <InfoCard />
         </div>
         {/* <hr className="w-[70%] mx-auto mb-4 h-1 bg-[#333]" /> */}
+          <TreeMap />
         <div className="grid grid-cols-2">
-          <BarChart />
-          <PieChart />
+        {/* <TreeMap /> */}
           <LineChart />
+          <PieChart />
+          <BarChart />
           <HeatmapChart />
         </div>
       </div>

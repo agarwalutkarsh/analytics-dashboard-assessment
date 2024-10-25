@@ -1,5 +1,6 @@
 import { Nunito } from 'next/font/google';
 import "./globals.css";
+import MainContextWrapper from '@/components/ContextApi/MainContext';
 
 
 const nunito = Nunito({ subsets: ['latin'] });
@@ -15,7 +16,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${nunito.className} antialiased bg-[#EFF4F4]`}
       >
-        {children}
+        <MainContextWrapper>
+          {children}
+        </MainContextWrapper>
       </body>
     </html>
   );

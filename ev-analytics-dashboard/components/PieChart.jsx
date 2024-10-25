@@ -31,7 +31,7 @@ const PieChart = () => {
     labels: [...type],
     title: {
       text: 'Distribution of Electric Vehicle Types',
-      align: 'center',
+      align: 'left'
     },
     responsive: [{
       breakpoint: 480,
