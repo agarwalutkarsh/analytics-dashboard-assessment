@@ -31,9 +31,10 @@ export default function Sidebar() {
         setSelectedFilters({
             make: mainContext?.makersList[0],
             city: mainContext?.cityList[0],
-            year: mainContext?.yearList[0]
+            year: mainContext?.yearList[0],
+            county: mainContext?.countyList[0]
         })
-    }, [mainContext.cityList, mainContext.countyList])
+    }, [mainContext.cityList, mainContext.countyList, mainContext.makersList, mainContext.yearList])
 
     return (
         <aside className="fixed top-0 left-0 w-64 h-screen bg-[#A2B8BB] text-black">

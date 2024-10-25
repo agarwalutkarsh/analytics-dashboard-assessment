@@ -4,7 +4,7 @@ import { getEVTypeDistribution } from '@/GlobalFunctions/HelperFunctions';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 const Chart = dynamic(() => import("react-apexcharts"), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <p className=" text-2xl font-semibold text-center h-44 ">Loading...</p>,
   ssr: false
 })
 
@@ -27,20 +27,21 @@ const PieChart = () => {
   const options = {
     chart: {
       type: 'pie',
+      fontFamily: 'Nunito',
+      fontWeight: 'bold',
+    },
+    legend: {
+      position: 'bottom',
+      fontSize: "13px",
+      fontFamily: "Nunito",
+      fontWeight: 'bold'
     },
     labels: [...type],
-    title: {
-      text: 'Distribution of Electric Vehicle Types',
-      align: 'left'
-    },
     responsive: [{
       breakpoint: 480,
       options: {
         chart: {
           width: 200,
-        },
-        legend: {
-          position: 'bottom',
         },
       },
     }],
@@ -48,6 +49,7 @@ const PieChart = () => {
 
   return (
     <div  className="bg-white p-4 m-4 rounded-2xl border-[#cccccc] border-1 shadow-md ">
+      <p className='text-xl font-bold ml-2'>Distribution of Electric Vehicle Types</p>
       <Chart options={options} series={series} type="pie" height={350} />
     </div>
   );

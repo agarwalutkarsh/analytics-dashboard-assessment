@@ -1,5 +1,5 @@
 import BarChart from "@/components/BarChart";
-import HeatmapChart from "@/components/HeatmapChart";
+import CountyBar from "@/components/CountyBar";
 import InfoCard from "@/components/InfoCard";
 import LineChart from "@/components/LineChart";
 import PieChart from "@/components/PieChart";
@@ -23,7 +23,7 @@ export default function Home() {
           <LineChart />
           <PieChart />
           <BarChart />
-          <HeatmapChart />
+          <CountyBar />
         </div>
       </div>
     </div>

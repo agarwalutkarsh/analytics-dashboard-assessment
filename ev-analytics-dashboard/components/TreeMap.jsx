@@ -4,7 +4,7 @@ import { getMakeDistribution } from "@/GlobalFunctions/HelperFunctions";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), {
-  loading: () => <p className=" text-2xl font-semibold">Loading...</p>,
+  loading: () => <p className=" text-2xl font-semibold text-center h-44 ">Loading...</p>,
   ssr: false
 });
 
@@ -34,18 +34,18 @@ const TreeMap = () => {
     },
     chart: {
       height: 350,
-      type: 'treemap'
-    },
-    title: {
-      text: 'Market Presence by Manufacturer'
+      type: 'treemap',
+      fontFamily: 'Nunito',
+      fontWeight: 'bold',
+      fontsize: '13px'
     }
   }
 
   return (
     <div className="bg-white p-4 m-4 rounded-2xl border-[#cccccc] border-1 shadow-md ">
-      { dataArr?.length > 0 &&
+      <p className='text-xl font-bold ml-2'>Market Presence by Manufacturer</p>
         <Chart options={options} series={series} type="treemap" height={350} />
-      }
+      
     </div>
   );
 };

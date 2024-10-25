@@ -1,7 +1,7 @@
 "use client";
 
 
-import { getMakeCountByCity } from "@/GlobalFunctions/HelperFunctions";
+import { getElectricUtilitiesByCounty } from "@/GlobalFunctions/HelperFunctions";
 import dynamic from "next/dynamic";
 import { useContext, useEffect, useState } from "react";
 import { MainContext } from "./ContextApi/MainContext";
@@ -10,24 +10,24 @@ const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false
 });
 
-const BarChart = () => {
+const CountyBar = () => {
   const mainContext = useContext(MainContext)
-  const [make, setMake] = useState([])
+  const [elecUtility, setElecUtility] = useState([])
   const [count, setCount] = useState([])
 
   useEffect(() => {
-    const makeArr = getMakeCountByCity(mainContext?.sidebarFilters?.city, mainContext?.sidebarFilters?.year)
+    const elecUtilityArr = getElectricUtilitiesByCounty(mainContext?.sidebarFilters?.county)
 
-    const makeDistributor = makeArr?.reduce((acc, curr) => {
-      acc.push(curr?.make)
+    const electricUtilityArr = elecUtilityArr?.reduce((acc, curr) => {
+      acc.push(curr?.county)
       return acc
     }, [])
 
-    const countOfDistributor = makeArr?.map(curr => curr?.count)
-    console.log(makeDistributor)
-    setMake([...makeDistributor])
-    setCount([...countOfDistributor])
-  }, [mainContext?.sidebarFilters?.city, mainContext?.sidebarFilters?.year])
+    const countOfElecUtility = elecUtilityArr?.map(curr => curr?.count)
+    console.log(electricUtilityArr)
+    setElecUtility([...electricUtilityArr])
+    setCount([...countOfElecUtility])
+  }, [mainContext?.sidebarFilters?.county])
 
   const series = [{
     name: 'No. of EVs',
@@ -38,7 +38,7 @@ const BarChart = () => {
       type: 'bar',
     },
     xaxis: {
-      categories: [...make ?? []],
+      categories: [...elecUtility ?? []],
       labels: {
         style: {
           fontFamily: 'Nunito',
@@ -51,10 +51,10 @@ const BarChart = () => {
 
   return (
     <div className="bg-white p-4 m-4 rounded-2xl border-[#cccccc] border-1 shadow-md ">
-      <p className='text-xl font-bold ml-2'>Electric Vehicles By City In A Year</p>
+      <p className='text-xl font-bold ml-2'>Electric Utilities By County</p>
       <Chart options={options} series={series} type="bar" height={350} />
     </div>
   );
 };
 
-export default BarChart;
+export default CountyBar;

@@ -8,7 +8,7 @@ import { getCountByManufacterer, getProducedInYear } from '@/GlobalFunctions/Hel
 import { MainContext } from './ContextApi/MainContext';
 const Chart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
-    loading: () => <p>Loading...</p>
+    loading: () => <p className=" text-2xl font-semibold text-center h-44 ">Loading...</p>
 })
 
 const LineChart = () => {
@@ -35,7 +35,7 @@ const LineChart = () => {
                 production: year,
                 count: manufactererCountObj[year] ?? 0
             }
-        ))        
+        ))
         setMakeProdCountArr(
             manufactererCountArr?.map(item => item?.count)
         )
@@ -54,22 +54,37 @@ const LineChart = () => {
     const options = {
         chart: {
             type: 'line',
-        },
-        title: {
-            text: 'Electric Vehicle in Market by Year',
-            align: 'left',
+            fontFamily: 'Nunito'
         },
         xaxis: {
             categories: [...prodYrArr],
+            labels: {
+                style: {
+                    fontFamily: 'Nunito',
+                    fontSize: '13px',
+                    fontWeight: 'bold'
+                }
+            }
         },
         yaxis: {
             title: {
                 text: 'EVs in Market',
+                fontFamily: 'Nunito',
+                style: {
+                    fontFamily: 'Nunito',
+                    fontSize: '13px'
+                }
             },
         },
+        legend: {
+            fontSize: "13px",
+            fontFamily: "Nunito",
+            fontWeight: 'bold'
+        }
     };
     return (
         <div className="bg-white p-4 m-4 rounded-2xl border-[#cccccc] border-1 shadow-md ">
+            <p className='text-xl font-bold ml-2'>Electric Vehicle in Market by Year</p>
             <Chart options={options} series={series} type="line" height={350} />
         </div>
     );
