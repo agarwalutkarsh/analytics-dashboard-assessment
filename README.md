@@ -3,6 +3,9 @@
 ## Analytics Dasboard Assessment Live Dashboard URL
 [Dasboard](https://analytics-dashboard-assessment-rho.vercel.app/)
 
+## Information to Install Packages from Package.Json
+Please use `npm install --legacy-peer-deps` to install all the dependencies to avoid unexpected behaviour of incompatible versions.
+
 ## Overview
 
 The objective of this assessment is to analyze the provided Electric Vehicle (EV) population data and create a frontend dashboard that visualizes key insights about the dataset. This repository contains the necessary data and instructions for you to demonstrate your analytical and dashboard creation skills. Feel free to use any tech stack you want to create the dashboard.
